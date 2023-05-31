@@ -12,4 +12,18 @@ function getHashParams(name) {
   return null;
 }
 
-export { getUrlParam, getHashParams };
+function transferTree = (data, labelKey, valueKey) => {
+  if (!Array.isArray(data)) {
+    return [];
+  }
+  for (let i = 0; i < data.length; i++) {
+    data[i].label = data[i][labelKey];
+    data[i].value = data[i][valueKey];
+    if (data[i].children) {
+      transferTree(data[i].children);
+    }
+  }
+  return data;
+};
+
+export { getUrlParam, getHashParams, transferTree };

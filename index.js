@@ -139,11 +139,27 @@ function copyText = (copyText, sucCallBack, failCallBack) => {
   }
 };
 
+/**
+ * 正则
+ */
+const Pattern = {
+  // 身份证正则校验
+  cardId:
+    /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+  // 手机号正则校验
+  phone: /^1[3-9]\d{9}$/,
+  //邮箱正则校验
+  eMail: /^([a-zA-Z\d])(\w|\-)+@[a-zA-Z\d]+\.[a-zA-Z]{2,4}$/,
+  // 判断字符是不是中文
+  testChinese: /[^\x00-\xff]/
+};
+
 export {
   getUrlParam,
   getHashParams,
   formatList,
   transferTree,
   copyText,
-  fmoney
+  fmoney,
+  Pattern
 };

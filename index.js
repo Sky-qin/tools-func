@@ -1,7 +1,7 @@
 // 工具函数create by qinwenlong，email：1095174004@qq.com
 
 /**
- * 获取某个URL参数值
+ * 获取URL上某个参数值
  * @param {[type]} name [string] 获取url产生key值
  */
 function getUrlParam(name) {
@@ -12,7 +12,7 @@ function getUrlParam(name) {
 }
 
 /**
- * 获取某个hash值
+ * 获取URL上某个hash值
  * @param {[type]} name [string] 要获取的hash参数key值
  */
 function getHashParams(name) {

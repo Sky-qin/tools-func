@@ -102,6 +102,14 @@ function fmoney(s, n){
   return t.split('').reverse().join('') + '.' + r;
 };
 
+
+/**
+ * 
+ * @param {[type]} copyText [string]
+ * @param {[type]} sucCallBack function
+ * @param {[type]} failCallBack function
+ * @returns 
+ */
 function copyText(copyText, sucCallBack, failCallBack){
   let textArea = document.createElement('textarea');
 

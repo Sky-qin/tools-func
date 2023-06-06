@@ -33,12 +33,12 @@ function formatList(data = [], options){
   // check options type
   let type = ""
   let newData = [];
-  if (options instanceof Array) {
-    type = 'array'
-  }
   if (options instanceof Object) {
-    type = 'object'
-  }
+    type = 'object';
+  };
+  if (Array.isArray(options)) {
+    type = 'array';
+  };
   if( type === "") {
     console.log("传入options参数格式不正确")
     return data

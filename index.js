@@ -9,7 +9,7 @@ function getUrlParam(name) {
   var r = decodeURIComponent(window.location.search.substr(1)).match(reg);
   if (r != null) return unescape(r[2]);
   return null;
-}
+};
 
 /**
  * 获取URL上某个hash值
@@ -20,7 +20,7 @@ function getHashParams(name) {
   var r = decodeURIComponent(window.location.hash.split("?")[1]).match(reg);
   if (r != null) return unescape(r[2] || "");
   return null;
-}
+};
 
 /**
  * 格式化数组 转为value label形式，方便三方组件使用
@@ -29,7 +29,7 @@ function getHashParams(name) {
  * 当传入object时，object包含两个属性(也只有两个属性)labelKey和valueKey；
  * 当传入array时，即数组里面的每个对象就是要替换的key值组合{ oldKey: oldKey, newKey: newKey },
  */
-function formatList = (data = [], options) => {
+function formatList(data = [], options){
   // check options type
   let type = ""
   let newData = [];
@@ -58,7 +58,7 @@ function formatList = (data = [], options) => {
     })
   }
   return data
-}
+};
 
 /**
  * 格式化树形数据key值
@@ -66,7 +66,7 @@ function formatList = (data = [], options) => {
  * @param {[type]} labelKey [string] 要替换为label值的key值
  * @param {[type]} valueKey [string] 要替换为value值的key值
  */
-function transferTree = (data, labelKey, valueKey) => {
+function transferTree(data, labelKey, valueKey){
   if (!Array.isArray(data)) {
     return [];
   }
@@ -86,7 +86,7 @@ function transferTree = (data, labelKey, valueKey) => {
  * @param  {[type]} n [保留小数点后n位]
  * @return {[type]}   [1234.567 => 1,234.56]
  */
-function fmoney = (s, n) => {
+function fmoney(s, n){
   n = n >= 0 && n <= 20 ? n : 2;
   s = parseFloat((s + '').replace(/[^\d\.-]/g, '')).toFixed(n) + '';
 
@@ -100,9 +100,9 @@ function fmoney = (s, n) => {
       return t.split('').reverse().join('');
   }
   return t.split('').reverse().join('') + '.' + r;
-},
+};
 
-function copyText = (copyText, sucCallBack, failCallBack) => {
+function copyText(copyText, sucCallBack, failCallBack){
   let textArea = document.createElement('textarea');
 
   textArea.style.position = 'fixed';

@@ -162,6 +162,14 @@ const Pattern = {
   testChinese: /[^\x00-\xff]/
 };
 
+/**
+ * 十六进制随机颜色
+ * @returns 
+ */
+const randomColor = ()=>{
+  return  "#" + Math.floor(Math.random()* 0xffffff).toString()
+}
+
 export {
   getUrlParam,
   getHashParams,
@@ -169,5 +177,6 @@ export {
   transferTree,
   copyText,
   fmoney,
-  Pattern
+  Pattern，
+  randomColor
 };

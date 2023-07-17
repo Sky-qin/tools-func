@@ -1,6 +1,6 @@
 {
   "name": "tools-func",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "通用函数工具包",
   "main": "index.js",
   "scripts": {

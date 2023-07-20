@@ -1,3 +1,8 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 // 工具函数create by qinwenlong，email：1095174004@qq.com
 
 /**
@@ -29,35 +34,38 @@ function getHashParams(name) {
  * 当传入object时，object包含两个属性(也只有两个属性)labelKey和valueKey；
  * 当传入array时，即数组里面的每个对象就是要替换的key值组合{ oldKey: oldKey, newKey: newKey },
  */
-function formatList(data = [], options){
+function formatList() {
+  var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var options = arguments[1];
+
   // check options type
-  let type = ""
-  let newData = [];
+  var type = "";
+  var newData = [];
   if (options instanceof Object) {
     type = 'object';
   };
   if (Array.isArray(options)) {
     type = 'array';
   };
-  if( type === "") {
-    console.log("传入options参数格式不正确")
-    return data
+  if (type === "") {
+    console.log("传入options参数格式不正确");
+    return data;
   }
-  if(type === "object") {
-    return newData = data.map(item => {
-      return Object.assign({item}, { label: item[options.labelKey], value: item[options.valueKey] })
-    })
+  if (type === "object") {
+    return newData = data.map(function (item) {
+      return Object.assign({ item: item }, { label: item[options.labelKey], value: item[options.valueKey] });
+    });
   }
-  if(type === "array") {
-    return newData = data.map(item => {
-      let newItem = {}
-      options.map(option => {
+  if (type === "array") {
+    return newData = data.map(function (item) {
+      var newItem = {};
+      options.map(function (option) {
         newItem[option.newKey] = item[option.oldKey];
-      })
-      return Object.assign(item, newItem)
-    })
+      });
+      return Object.assign(item, newItem);
+    });
   }
-  return data
+  return data;
 };
 
 /**
@@ -66,11 +74,11 @@ function formatList(data = [], options){
  * @param {[type]} labelKey [string] 要替换为label值的key值
  * @param {[type]} valueKey [string] 要替换为value值的key值
  */
-function transferTree(data, labelKey, valueKey){
+function transferTree(data, labelKey, valueKey) {
   if (!Array.isArray(data)) {
     return [];
   }
-  for (let i = 0; i < data.length; i++) {
+  for (var i = 0; i < data.length; i++) {
     data[i].label = data[i][labelKey];
     data[i].value = data[i][valueKey];
     if (data[i].children) {
@@ -86,22 +94,22 @@ function transferTree(data, labelKey, valueKey){
  * @param  {[type]} n [保留小数点后n位]
  * @return {[type]}   [1234.567 => 1,234.56]
  */
-function fmoney(s, n){
+function fmoney(s, n) {
   n = n >= 0 && n <= 20 ? n : 2;
   s = parseFloat((s + '').replace(/[^\d\.-]/g, '')).toFixed(n) + '';
 
-  var l = s.split('.')[0].split('').reverse(), r = s.split(".")[1],
+  var l = s.split('.')[0].split('').reverse(),
+      r = s.split(".")[1],
       t = "";
 
   for (var i = 0; i < l.length; i++) {
-      t += l[i] + ((i + 1) % 3 == 0 && (i + 1) != l.length ? ',' : '');
+    t += l[i] + ((i + 1) % 3 == 0 && i + 1 != l.length ? ',' : '');
   }
-  if(n == 0){
-      return t.split('').reverse().join('');
+  if (n == 0) {
+    return t.split('').reverse().join('');
   }
   return t.split('').reverse().join('') + '.' + r;
 };
-
 
 /**
  * 
@@ -110,8 +118,8 @@ function fmoney(s, n){
  * @param {[type]} failCallBack function
  * @returns 
  */
-function copyText(copyText, sucCallBack, failCallBack){
-  let textArea = document.createElement('textarea');
+function copyText(copyText, sucCallBack, failCallBack) {
+  var textArea = document.createElement('textarea');
 
   textArea.style.position = 'fixed';
   textArea.style.top = 0;
@@ -130,19 +138,19 @@ function copyText(copyText, sucCallBack, failCallBack){
   textArea.select();
 
   try {
-    let msg = document.execCommand('copy');
+    var msg = document.execCommand('copy');
     if (msg) {
       document.body.removeChild(textArea);
       // Feedback.toast.success('复制成功');
-      console.log("复制成功！")
+      console.log("复制成功！");
       sucCallBack();
       return;
     }
     // Feedback.toast.error('复制失败');
-    console.log("复制失败！")
+    console.log("复制失败！");
     failCallBack();
   } catch (err) {
-    console.log('不能使用这种方法复制内容')
+    console.log('不能使用这种方法复制内容');
     failCallBack();
   }
 };
@@ -150,10 +158,9 @@ function copyText(copyText, sucCallBack, failCallBack){
 /**
  * 正则
  */
-const Pattern = {
+var Pattern = {
   // 身份证正则校验
-  cardId:
-    /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+  cardId: /^[1-9]\d{5}(18|19|20|(3\d))\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
   // 手机号正则校验
   phone: /^1[3-9]\d{9}$/,
   //邮箱正则校验
@@ -166,17 +173,15 @@ const Pattern = {
  * 十六进制随机颜色
  * @returns 
  */
-const randomColor = ()=>{
-  return  "#" + Math.floor(Math.random()* 0xffffff).toString()
-}
-
-export {
-  getUrlParam,
-  getHashParams,
-  formatList,
-  transferTree,
-  copyText,
-  fmoney,
-  Pattern,
-  randomColor
+var randomColor = function randomColor() {
+  return "#" + Math.floor(Math.random() * 0xffffff).toString();
 };
+
+exports.getUrlParam = getUrlParam;
+exports.getHashParams = getHashParams;
+exports.formatList = formatList;
+exports.transferTree = transferTree;
+exports.copyText = copyText;
+exports.fmoney = fmoney;
+exports.Pattern = Pattern;
+exports.randomColor = randomColor;

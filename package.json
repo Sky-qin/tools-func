@@ -1,15 +1,20 @@
 {
   "name": "tools-func",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "通用函数工具包",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel index.js --presets babel-preset-es2015 --out-dir dist"
   },
   "keywords": [
     "tool",
     "tools"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
